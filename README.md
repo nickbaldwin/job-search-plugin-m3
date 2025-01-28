@@ -62,7 +62,9 @@ The extension is composed of four primary components:
 
 -   #### Content (and inline) scripts
 
-    The main content script injects the extension 'App' into the context of search results pages across all Monster domains. While it can access and modify the DOM, it operates in an isolated context which means it cannot access key data added by the Monster site (Window properties and React element info). Thus, a 'world' script is injected into the Monster web page as a script tag purely in order to pass this information to the content script.
+    The main content script injects the extension 'App' into the context of search results pages across all Monster domains. While it can access and modify the DOM, it operates in an isolated context which means it cannot access key data added by the Monster site (Window properties and React element info). Thus, a 'world' script is injected into the Monster web page as a script tag purely in order to pass this information to the content script (through window messages) which is validated and passed to a store.
+    
+    The 'main' part of the application is a React application that has several 'pages' that display different information including detailed information on the job search results from the store, user settings which are persisted locally and static links to the various Monster sites. 
 
 -   #### Service worker
 

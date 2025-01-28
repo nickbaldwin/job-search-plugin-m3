@@ -10,11 +10,12 @@ ListenerFunction();
 const moduleName = 'content script';
 log({ logType: 'info', moduleName, message: 'loaded' });
 
-// not that world script is now injected directly into the host web page
-// - within 'main' world context
+// note that world script is now injected directly into the host web page
+// within the 'main' world context (via manifest.json)
+// whereas this script is rendered within the web page in an 'isolated' context
+// thus the world script has access to the context of the app, and can communicate
+// with this script, which is listening for messages and updates the store
 
-// render the app into the host web page
-// - isolated context
 const root: HTMLDivElement = document.createElement('div');
 root.id = 'content-root';
 document.body.appendChild(root);

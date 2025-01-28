@@ -1,0 +1,321 @@
+{
+    "schemaVersion": "2.19.0",
+    "jobId": "2f12116d-328f-4d06-811a-adfc6fafede4",
+    "externalIdentifiers": [
+        {
+            "identifierName": "NOW_POSTING_ID",
+            "identifierValue": "8d1dfd5d-6103-4ea8-9537-ded83f82c849"
+        }
+    ],
+    "provider": {
+        "code": "kforceftpin",
+        "name": "kforce"
+    },
+    "status": "ACTIVE",
+    "jobStatus": {
+        "status": "ACTIVE"
+    },
+    "ingestionMethod": "ADAPTED_NOW",
+    "createdDate": "2024-12-03T17:30:46.736Z",
+    "modifiedDate": "2025-01-18T00:48:52.416Z",
+    "apply": {
+        "applyType": "OFFSITE",
+        "applyUrl": "http://www.kforce.com/Jobs/3196~AQG~2130005T1~99/ApplyOnline/?event=candidate.apply&Industry=KNAGLE@KFORCE.COM&id=3196&id=3196&utm_source=Monster&utm_medium=JobBoardPosting&utm_campaign=Monster"
+    },
+    "jobPosting": {
+        "@context": "https://schema.org",
+        "@type": "JobPosting",
+        "description": "Kforce has a client in need of a Software Engineer in Boston, MA.\n\nResponsibilities:\n<ul><li> Build an omni channel user experience and the underlying platforms needed to support our digital presence</li><li> As a Software Engineer, you will build entire features from concept to deployment</li><li> Improve products</li></ul>",
+        "url": "https://www.monster.com/job-openings/software-engineer-boston-ma--2f12116d-328f-4d06-811a-adfc6fafede4?mstr_dist=true",
+        "baseSalary": {
+            "@type": "MonetaryAmount",
+            "currency": "USD",
+            "value": {
+                "@type": "QuantitativeValue",
+                "minValue": 66,
+                "maxValue": 74,
+                "unitText": "hourly"
+            }
+        },
+        "datePosted": "2025-01-17T17:29:19.335Z",
+        "hiringOrganization": {
+            "@type": "Organization",
+            "description": "<p>Kforce is a US-based placement firm that matches skilled technology and finance workers with the companies that need them. The specialty staffing firm provides temporary staffing services (and, to a lesser extent, permanent placement) primarily in information technology, finance, and accounting.</p>",
+            "sameAs": "http://www.kforce.com/",
+            "name": "Kforce Inc.",
+            "foundingDate": "1962",
+            "numberOfEmployees": {
+                "@type": "QuantitativeValue",
+                "unitText": "1,000 to 1,499 employees"
+            },
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Tampa",
+                "addressRegion": "Florida",
+                "addressCountry": "US"
+            },
+            "logo": "https://media.newjobs.com/clu/xkfo/xkfocx/branding/81354/Kforce-logo-638471394593040640.png"
+        },
+        "identifier": {
+            "@type": "PropertyValue",
+            "name": "Kforce Inc.",
+            "value": "ITAQG2130005"
+        },
+        "industry": "Financial Services",
+        "jobLocation": [
+            {
+                "@type": "Place",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Boston",
+                    "addressRegion": "MA",
+                    "postalCode": "02109",
+                    "addressCountry": "US"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": "42.363",
+                    "longitude": "-71.054"
+                }
+            }
+        ],
+        "salaryCurrency": "USD",
+        "title": "Software Engineer"
+    },
+    "attributeValuePairs": [
+        {
+            "name": "location_0_addressRegionName",
+            "value": "Massachusetts"
+        },
+        {
+            "name": "location_0_addressCountryName",
+            "value": "US"
+        }
+    ],
+    "normalizedJobPosting": {
+        "@context": "https://schema.org",
+        "@type": "JobPosting",
+        "description": "Kforce has a client in need of a Software Engineer in Boston, MA.\n\nResponsibilities:\n<ul><li> Build an omni channel user experience and the underlying platforms needed to support our digital presence</li><li> As a Software Engineer, you will build entire features from concept to deployment</li><li> Improve products</li></ul>",
+        "url": "https://www.monster.com/job-openings/software-engineer-boston-ma--2f12116d-328f-4d06-811a-adfc6fafede4",
+        "baseSalary": {
+            "@type": "MonetaryAmount",
+            "currency": "USD",
+            "value": {
+                "@type": "QuantitativeValue",
+                "minValue": 66,
+                "maxValue": 74,
+                "unitText": "hourly"
+            }
+        },
+        "datePosted": "2025-01-17T17:29:19.335Z",
+        "employmentType": ["OTHER"],
+        "hiringOrganization": {
+            "@type": "Organization",
+            "description": "<p>Kforce is a US-based placement firm that matches skilled technology and finance workers with the companies that need them. The specialty staffing firm provides temporary staffing services (and, to a lesser extent, permanent placement) primarily in information technology, finance, and accounting.</p>",
+            "sameAs": "http://www.kforce.com/",
+            "name": "Kforce Inc.",
+            "foundingDate": "1962",
+            "numberOfEmployees": {
+                "@type": "QuantitativeValue",
+                "unitText": "1,000 to 1,499 employees"
+            },
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Tampa",
+                "addressRegion": "Florida",
+                "addressCountry": "US"
+            },
+            "logo": "https://media.newjobs.com/clu/xkfo/xkfocx/branding/81354/Kforce-logo-638471394593040640.png"
+        },
+        "identifier": {
+            "@type": "PropertyValue",
+            "name": "Kforce Inc.",
+            "value": "ITAQG2130005"
+        },
+        "industry": "Financial Services",
+        "jobLocation": [
+            {
+                "@type": "Place",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Boston",
+                    "addressRegion": "MA",
+                    "postalCode": "02109",
+                    "addressCountry": "US"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": "42.363217",
+                    "longitude": "-71.054494"
+                }
+            }
+        ],
+        "jobLocationType": "UNKNOWN",
+        "occupationalCategory": "15-1132.00: Software Developers, Applications",
+        "salaryCurrency": "USD",
+        "title": "Software Engineer",
+        "validThrough": "2026-01-18T00:48:52.165Z"
+    },
+    "now": {
+        "jobAdPricingTypeId": 2,
+        "activationDate": "2025-01-17T17:41:39.000Z"
+    },
+    "policyDecisions": {
+        "jobLocationTypeDecision": {
+            "type": "CLIENT_SPECIFIED",
+            "explanation": "Job identified as not remote",
+            "result": "ONSITE"
+        }
+    },
+    "enrichments": {
+        "language": {
+            "languageCode": "en"
+        },
+        "mescos": [
+            {
+                "id": "1500127001001"
+            }
+        ],
+        "normalizedJobLocations": [
+            {
+                "postalAddress": {
+                    "@context": "https://schema.org",
+                    "@type": "Place",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Boston",
+                        "addressRegion": "MA",
+                        "postalCode": "02109",
+                        "addressCountry": "US"
+                    },
+                    "geo": {
+                        "@type": "GeoCoordinates",
+                        "latitude": "42.363217",
+                        "longitude": "-71.054494"
+                    }
+                },
+                "locationId": "27407839",
+                "countryCode": "US"
+            }
+        ],
+        "companyKb": {
+            "normalizedCompanyName": "Kforce Inc.",
+            "normalizedCompanyGuid": "esdr7hayqnf7rh4shtvu7qxbuc"
+        },
+        "normalizedTitles": [
+            {
+                "title": "Software Engineer"
+            }
+        ],
+        "normalizedSalary": {
+            "currencyCode": {
+                "name": "USD",
+                "id": 920
+            },
+            "salaryBaseType": {
+                "name": "OTHER",
+                "id": 238
+            }
+        },
+        "jobLocationType": {
+            "name": "UNKNOWN",
+            "id": 109
+        },
+        "employmentTypes": [
+            {
+                "name": "UNKNOWN",
+                "id": 29
+            }
+        ],
+        "status": {
+            "name": "ACTIVE",
+            "id": 52
+        },
+        "applyType": {
+            "name": "OFFSITE",
+            "id": 51
+        },
+        "ingestionMethod": {
+            "name": "ADAPTED_NOW",
+            "id": 704
+        },
+        "localizedMonsterUrls": [
+            {
+                "locationId": "27407839",
+                "url": "https://www.monster.com/job-openings/software-engineer-boston-ma--2f12116d-328f-4d06-811a-adfc6fafede4"
+            }
+        ],
+        "qualifiedForG4J": true,
+        "isPublicJob": true,
+        "googleSyntheticValidThrough": "2026-01-18T00:48:52.165Z",
+        "processedDescriptions": {
+            "shortDescription": "Employee pay is based on factors like relevant education, qualifications, certifications, experience, skills, seniority, location, performance, union contract and business needs. By clicking “Apply Today” you agree to receive calls, AI-generated calls, text messages or emails from Kforce and its affiliates, and service providers."
+        },
+        "normalizedDatePosted": "2025-01-17T17:29:19.335Z",
+        "soc": [
+            {
+                "id": "15113200",
+                "usen": "Software Developers, Applications"
+            }
+        ],
+        "hashes": [
+            {
+                "sourcePath": "$.jobPosting.description",
+                "description": "jobPosting description hashed.",
+                "hashAlgorithm": "SHA-256",
+                "value": "u8zg5mGOaoVOOaYSN2RBbVc/sV9A8Ml7bOdGL8th/BA="
+            },
+            {
+                "sourcePath": "$.jobPosting.title",
+                "description": "jobPosting title hashed.",
+                "hashAlgorithm": "SHA-256",
+                "value": "alDRAY12kAFoEpjybdWQub9WHlN81PsBUojyS8JGtLQ="
+            },
+            {
+                "sourcePath": "$.jobPosting.hiringOrganization",
+                "description": "jobPosting hiringOrganization as json hashed.",
+                "hashAlgorithm": "SHA-256",
+                "value": "cwY539WFHRgh8+2hFCHzwmN/vJ95/iG9RSzhfQTqGC8="
+            },
+            {
+                "sourcePath": "$.jobPosting.jobLocation",
+                "description": "jobPosting jobLocation as json hashed.",
+                "hashAlgorithm": "SHA-256",
+                "value": "q3I2RSNbz/mkM75A6f3z9C2tOXEkTtsnuhH3d//uU0Q="
+            },
+            {
+                "sourcePath": "$.jobPosting.description,$.jobPosting.title,$.enrichments.normalizedJobLocations[0].postalAddress.address.addressLocality,$.enrichments.normalizedJobLocations[0].postalAddress.address.addressRegion,$.enrichments.normalizedJobLocations[0].postalAddress.address.addressCountry",
+                "description": "Google indexing deduplication",
+                "hashAlgorithm": "jobs-text-utils_JobsDuplicationUtils_computeDuplicationScore",
+                "value": "0-1651316536|001636371141|7D4C2DB9FAA46640D8A097C87BA16851"
+            }
+        ]
+    },
+    "seoJobId": "software-engineer-boston-ma--2f12116d-328f-4d06-811a-adfc6fafede4",
+    "formattedDate": "2025-01-17T00:00:00",
+    "dateRecency": "1 day ago",
+    "jobAd": {
+        "type": "LexemeJobAd",
+        "provider": "LEXEME",
+        "tracking": {
+            "clickUrl": "https://prod.monsterview.com/r?e=eyJ2IjoiMS4xMiIsImF2IjoxODc2MzM0LCJhdCI6MTYyLCJidCI6MCwiY20iOjUzNjY3MDY3NSwiY2giOjUwNDc1LCJjayI6e30sImNyIjo1OTEyODQ3MDMsImRpIjoiMTRlYTlmZDFlZmZiNDE2M2IzNzBhYWQ1NWI5YzJkYTgiLCJkaiI6MCwiaWkiOiIxYjM3MDg5MjYwMWQ0MTc5YTY2NjM0YmNhY2NlN2UxMCIsImRtIjozLCJmYyI6NzY1NDg0NzUwLCJmbCI6NzM5Mjc1NDI1LCJpcCI6IjE1OS4xOTYuMTY4LjE2OCIsIm53IjoxMDUxNSwicGMiOjAuNywib3AiOjAuNywibXAiOjAuNywiZWMiOjIxLjcyMjQsImdtIjowLCJlcCI6IldFQiIsInByIjoyMTc5MTMsInJ0IjozLCJycyI6OTc3LCJzYSI6IjUzIiwic2IiOiJpLTA4ZTZmMzAxYjZjNzgyNGU0Iiwic3AiOjI2Mzc5MzAsInN0IjoxMTI5NzEyLCJ1ayI6Ino2Njk1YWRlOWNlM2ZhYzEwMTVlMTZlZmI0MjI5YjA3NiIsInRzIjoxNzM3MTc4ODA1NjE5LCJwbiI6IldFQjpKT0JfU0VBUkNIIiwiZ2MiOnRydWUsImdDIjp0cnVlLCJncyI6Im5vbmUiLCJiaSI6MSwidHoiOiJVVEMiLCJ1ciI6bnVsbH0&s=NAtbH9A4fwMrOmLVVOxzK6B4rwE&property%3Aaid=027eb00533f709c76a7f2b374e601255&property%3Acname=2f12116d-328f-4d06-811a-adfc6fafede4_Software+Engineer&property%3Acsrc=ppc.now&property%3Atid=monster.com&property%3Acur=USD&property%3Aexr=1.0&property%3Ajid=2f12116d-328f-4d06-811a-adfc6fafede4&property%3Ajloc=%5B%7B%22city%22%3A%22Boston%22%2C%22state%22%3A%22MA%22%2C%22country%22%3A%22US%22%2C%22zipcode%22%3A%2202109%22%2C%22latitude%22%3A%2242.363%22%2C%22longitude%22%3A%22-71.054%22%7D%5D&property%3Ajmsc=1500127001001&property%3Ajtit=Software+Engineer&property%3Asid=6547aa2f-715d-4230-ae30-a463a7797460&property%3Alat=-33.8182&property%3Alng=151.1602&property%3Apcd=kforceftpin&property%3Aua=Java-http-client%2F21.0.5&property%3Arip=159.196.168.168&property%3Asname=Web&property%3Asdate=2025-01-18T00%3A48%3A52.68&property%3Aac=US&property%3Aap=LEXEME&property%3Asp=Software+Engineer&property%3Asl=boston%2C+ma",
+            "impressionUrl": "https://prod.monsterview.com/i.gif?e=eyJ2IjoiMS4xMiIsImF2IjoxODc2MzM0LCJhdCI6MTYyLCJidCI6MCwiY20iOjUzNjY3MDY3NSwiY2giOjUwNDc1LCJjayI6e30sImNyIjo1OTEyODQ3MDMsImRpIjoiMTRlYTlmZDFlZmZiNDE2M2IzNzBhYWQ1NWI5YzJkYTgiLCJkaiI6MCwiaWkiOiIxYjM3MDg5MjYwMWQ0MTc5YTY2NjM0YmNhY2NlN2UxMCIsImRtIjozLCJmYyI6NzY1NDg0NzUwLCJmbCI6NzM5Mjc1NDI1LCJpcCI6IjE1OS4xOTYuMTY4LjE2OCIsIm53IjoxMDUxNSwicGMiOjAuNywib3AiOjAuNywibXAiOjAuNywiZWMiOjIxLjcyMjQsImdtIjowLCJlcCI6IldFQiIsInByIjoyMTc5MTMsInJ0IjozLCJycyI6OTc3LCJzYSI6IjUzIiwic2IiOiJpLTA4ZTZmMzAxYjZjNzgyNGU0Iiwic3AiOjI2Mzc5MzAsInN0IjoxMTI5NzEyLCJ1ayI6Ino2Njk1YWRlOWNlM2ZhYzEwMTVlMTZlZmI0MjI5YjA3NiIsInRzIjoxNzM3MTc4ODA1NjE5LCJwbiI6IldFQjpKT0JfU0VBUkNIIiwiZ2MiOnRydWUsImdDIjp0cnVlLCJncyI6Im5vbmUiLCJiaSI6MSwidHoiOiJVVEMiLCJiYSI6MTUyLCJmcSI6MH0&s=Y3ZR_jXrrF1Y2_P3MffvHwASY4c&property%3Aaid=027eb00533f709c76a7f2b374e601255&property%3Acname=2f12116d-328f-4d06-811a-adfc6fafede4_Software+Engineer&property%3Acsrc=ppc.now&property%3Atid=monster.com&property%3Acur=USD&property%3Aexr=1.0&property%3Ajid=2f12116d-328f-4d06-811a-adfc6fafede4&property%3Ajloc=%5B%7B%22city%22%3A%22Boston%22%2C%22state%22%3A%22MA%22%2C%22country%22%3A%22US%22%2C%22zipcode%22%3A%2202109%22%2C%22latitude%22%3A%2242.363%22%2C%22longitude%22%3A%22-71.054%22%7D%5D&property%3Ajmsc=1500127001001&property%3Ajtit=Software+Engineer&property%3Asid=6547aa2f-715d-4230-ae30-a463a7797460&property%3Alat=-33.8182&property%3Alng=151.1602&property%3Apcd=kforceftpin&property%3Aua=Java-http-client%2F21.0.5&property%3Arip=159.196.168.168&property%3Asname=Web&property%3Asdate=2025-01-18T00%3A48%3A52.68&property%3Aac=US&property%3Aap=LEXEME&property%3Asp=Software+Engineer&property%3Asl=boston%2C+ma"
+        }
+    },
+    "brandingExt": {
+        "companyBannerUrl": "https://media.newjobs.com/clu/xkfo/xkfocx/branding/81354/Kforce-banner-638476541685645802.png",
+        "companyPhotos": [
+            {
+                "url": "https://media.newjobs.com/clu/xkfo/xkfocx/branding/81354/aebb8626-ace3-4a34-a9fc-bbbcd1c47f2b.jpg",
+                "caption": ""
+            }
+        ],
+        "companyBenefits": []
+    },
+    "canonicalUrl": "https://www.monster.com/job-openings/software-engineer-boston-ma--2f12116d-328f-4d06-811a-adfc6fafede4?mstr_dist=true",
+    "searchEngine": "LEXEME_PAID",
+    "bespokeJob": false,
+    "ldJsonEligible": true,
+    "promoted": true,
+    "jobType": "PPC"
+}

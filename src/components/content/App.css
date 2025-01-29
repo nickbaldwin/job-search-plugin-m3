@@ -20,9 +20,4 @@ span.bg-white.duration-200.ease-in-out.group-data-checked\:translate-x-5.inline-
     padding: 2em;
 }
 
-table,
-th,
-td {
-    border: solid 1px grey;
-    border-spacing: 0;
-}
+

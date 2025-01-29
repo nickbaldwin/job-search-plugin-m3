@@ -1,0 +1,13 @@
+table.results  {
+    border: 1px solid #333;
+}
+
+.results tbody {
+    border-bottom: 1px solid #333;
+}
+
+.results th, .results td {
+    border-bottom: 1px solid #333;
+    border-right: 1px solid #333;
+    padding: 3px 5px;
+}

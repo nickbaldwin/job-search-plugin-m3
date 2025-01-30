@@ -7,7 +7,11 @@ export const getSettingsFromExtensionStorage = async (): Promise<object> => {
         try {
             chrome.storage.local.get([settingsKey], function (value: object) {
                 // @ts-expect-error todo
-                if (!value || value[settingsKey] === undefined) {
+                if (
+                    !value ||
+                    value[settingsKey] === undefined ||
+                    Object.entries(value[settingsKey]).length === 0
+                ) {
                     // todo - save default settings
                     console.log(
                         `no store with key ${settingsKey} in extension storage`,
@@ -42,6 +46,16 @@ export const saveSettingsToExtensionStorage = async (settings: object) => {
             chrome.storage.local.set({ [settingsKey]: settings }, function () {
                 resolve('settings saved');
             });
+        } catch (ex) {
+            reject(ex);
+        }
+    });
+};
+
+export const saveSettingToExtensionStorage = async (settings: object) => {
+    return new Promise((resolve, reject) => {
+        try {
+            saveSettingsToExtensionStorage(settings);
         } catch (ex) {
             reject(ex);
         }

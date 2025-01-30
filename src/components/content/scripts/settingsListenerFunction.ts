@@ -26,7 +26,7 @@ export const settingsListenerFunction = () => {
             console.log('update settings here');
             // todo
 
-            updateSettings(defaultUserSetting());
+            updateSettings(messageType.payload);
             console.log(window.location.href);
         } else {
             // nothing!

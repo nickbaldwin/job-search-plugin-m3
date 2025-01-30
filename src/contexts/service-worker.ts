@@ -4,7 +4,11 @@ import {
     subscribeToExtensionMessages,
     sendMessageToContent,
 } from '../utils/messaging.ts';
-import { getSettingsFromExtensionStorage } from '../helpers/localStorage.ts';
+import {
+    getSettingsFromExtensionStorage,
+    saveSettingsToExtensionStorage,
+    saveSettingToExtensionStorage,
+} from '../helpers/localStorage.ts';
 
 try {
     const moduleName = 'background service-worker script';
@@ -21,6 +25,35 @@ try {
             sendMessageToContent({
                 type: 'SAVED_SETTINGS',
                 payload: settings,
+            });
+        }
+
+        if (message.type === 'TOGGLE_SETTING_VISIBILITY') {
+            console.log('save setting');
+            const currentSettings = await getSettingsFromExtensionStorage();
+            console.log('current settings ', currentSettings);
+            // @ts-ignore
+            const setting =
+                currentSettings[
+                    typeof message.payload === 'string' ? message.payload : ''
+                ];
+            const newSetting = {
+                ...setting,
+                visible: !setting.visible,
+            };
+
+            const updated = {
+                ...currentSettings,
+                // @ts-ignore
+                [message.payload]: newSetting,
+            };
+            console.log('updated settings ', updated);
+
+            await saveSettingsToExtensionStorage(updated);
+
+            sendMessageToContent({
+                type: 'SAVED_SETTINGS',
+                payload: updated,
             });
         }
     };

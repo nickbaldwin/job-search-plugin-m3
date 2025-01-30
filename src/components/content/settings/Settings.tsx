@@ -20,6 +20,7 @@ export const Settings = () => {
             {getNamesOfFields().map((s) => (
                 <>
                     <SettingItem
+                        id={settings[s].field}
                         title={settings[s].title}
                         visible={settings[s].visible}
                         disabled={settings[s].disabled}

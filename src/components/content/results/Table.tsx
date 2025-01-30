@@ -11,12 +11,9 @@ import {
     useReactTable,
     ExpandedState,
 } from '@tanstack/react-table';
-import { HTMLProps } from 'react';
+
 import { Checkbox } from '@headlessui/react';
 import { CheckIcon } from '@heroicons/react/16/solid';
-
-import { blankJob, DisplayJob } from '../../../schema/transform.ts';
-import useStore from '../../../store/store.ts';
 
 type ColumnSort = {
     id: string;
@@ -167,27 +164,19 @@ const defaultColumns = [
     }),
 ];
 
-export function Table({ results }: { results: DisplayJob[] }) {
+export function Table({
+    results,
+    hiddenSettings,
+}: {
+    results: DisplayJob[];
+    hiddenSettings: object;
+}) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-
-    // const results = useStore((state) => state.results);
-    console.log('results in table', results);
-
-    // const [data, _setData] = React.useState(() => [...results]);
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [rowSelection, setRowSelection] = React.useState({});
     const [expanded, setExpanded] = React.useState<ExpandedState>({});
     // todo - pass this in as a prop
-    const [columnVisibility, setColumnVisibility] = React.useState({
-        'select-col': true,
-        expand: true, //hide this column by default
-        firstName: true,
 
-        description: false,
-        data: false,
-        kevelData: false,
-        selected: false,
-    });
     const [columns] = React.useState<typeof defaultColumns>(() => [
         ...defaultColumns,
     ]);
@@ -197,7 +186,18 @@ export function Table({ results }: { results: DisplayJob[] }) {
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel(),
         state: {
-            columnVisibility,
+            columnVisibility: {
+                ...hiddenSettings,
+
+                'select-col': true,
+                expand: true, //hide this column by default
+
+                data: false,
+                decisionId: false,
+                kevelData: false,
+                selected: false,
+            },
+
             rowSelection,
             expanded: expanded, // must pass expanded state back to the table
         },

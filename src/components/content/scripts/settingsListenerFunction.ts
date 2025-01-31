@@ -5,12 +5,11 @@ import {
     subscribeToExtensionMessages,
 } from '../../../utils/messaging.ts';
 
-import { defaultUserSetting } from '../../../schema/settings.ts';
-
 import { log } from '../../../utils/logger.ts';
 const moduleName = 'settingsListener';
 
 const updateSettings = useStore.getState().updateSettings;
+
 export const settingsListenerFunction = () => {
     log({ logType: 'info', moduleName, message: 'loaded' });
     const messageHandler = (messageType: MessageType) => {
@@ -25,7 +24,6 @@ export const settingsListenerFunction = () => {
 
             console.log('update settings here');
             // todo
-
             updateSettings(messageType.payload);
             console.log(window.location.href);
         } else {
@@ -34,6 +32,7 @@ export const settingsListenerFunction = () => {
     };
     subscribeToExtensionMessages(messageHandler, moduleName);
 
+    // todo
     sendMessageToBackgroundAndPopup({
         type: 'VERSION_REQUEST',
         source: moduleName,
@@ -44,6 +43,7 @@ export const settingsListenerFunction = () => {
         source: moduleName,
     });
 
+    // todo
     sendMessageToBackgroundAndPopup({
         type: 'LOGIN_STATUS_REQUEST',
         source: moduleName,

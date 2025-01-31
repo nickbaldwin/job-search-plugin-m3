@@ -747,14 +747,18 @@ export const Settings: Record<string, DataProperty> = {
 };
 
 // returns all fields that can be displayed in the table
-export const getNamesOfFields: () => string[] = () => {
+export const getNamesOfFields: () => string[] = (): string[] => {
     return Object.values(Settings)
         .filter((field: DataProperty) => field.tableField)
         .map((field: DataProperty) => field.field);
 };
 
-export const defaultUserSetting = (): Record<string, DataProperty> => {
-    const settings: Record<string, DataProperty> = {};
+const fields = getNamesOfFields() as const;
+export type Field = (typeof fields)[number]; // i.e. 'position' | 'adRank' ...
+export type UserSettings = Record<Field, DataProperty>;
+
+export const defaultUserSetting = (): Record<Field, DataProperty> => {
+    const settings: Record<Field, DataProperty> = {};
     for (const key in Settings) {
         if (Settings[key].tableField) {
             settings[key] = Settings[key];

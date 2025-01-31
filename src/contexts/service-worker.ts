@@ -9,6 +9,7 @@ import {
     saveSettingsToExtensionStorage,
     saveSettingToExtensionStorage,
 } from '../helpers/localStorage.ts';
+import { getNamesOfFields } from '../schema/settings.ts';
 
 try {
     const moduleName = 'background service-worker script';
@@ -30,13 +31,19 @@ try {
 
         if (message.type === 'TOGGLE_SETTING_VISIBILITY') {
             console.log('save setting');
+
+            // todo - move logic to storage / settings
             const currentSettings = await getSettingsFromExtensionStorage();
             console.log('current settings ', currentSettings);
-            // @ts-ignore
-            const setting =
-                currentSettings[
-                    typeof message.payload === 'string' ? message.payload : ''
-                ];
+            // todo
+            if (
+                typeof message.payload !== 'string' ||
+                !getNamesOfFields().includes(message.payload)
+            ) {
+                console.log(`setting ${message.payload} not in list of fields`);
+                return;
+            }
+            const setting = currentSettings[message.payload];
             const newSetting = {
                 ...setting,
                 visible: !setting.visible,
@@ -47,14 +54,17 @@ try {
                 // @ts-ignore
                 [message.payload]: newSetting,
             };
-            console.log('updated settings ', updated);
 
-            await saveSettingsToExtensionStorage(updated);
-
-            sendMessageToContent({
-                type: 'SAVED_SETTINGS',
-                payload: updated,
-            });
+            const status = await saveSettingsToExtensionStorage(updated);
+            if (status === 'SUCCESS') {
+                console.log('updated settings ', updated);
+                sendMessageToContent({
+                    type: 'SAVED_SETTINGS',
+                    payload: updated,
+                });
+            } else {
+                console.log('error saving settings');
+            }
         }
     };
 

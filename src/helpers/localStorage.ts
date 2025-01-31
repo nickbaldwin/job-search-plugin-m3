@@ -1,57 +1,67 @@
-import { defaultUserSetting } from '../schema/settings.ts';
+import {
+    defaultUserSetting,
+    getNamesOfFields,
+    UserSettings,
+} from '../schema/settings.ts';
+
 // todo - use logger, DataProperty, zod
+// todo - update key
 const settingsKey = 'job-search-plugin-field-settings-old';
 
-export const getSettingsFromExtensionStorage = async (): Promise<object> => {
-    return new Promise((resolve, reject) => {
-        try {
-            chrome.storage.local.get([settingsKey], function (value: object) {
-                // @ts-expect-error todo
-                if (
-                    !value ||
-                    value[settingsKey] === undefined ||
-                    Object.entries(value[settingsKey]).length === 0
-                ) {
-                    // todo - save default settings
-                    console.log(
-                        `no store with key ${settingsKey} in extension storage`,
-                        value
-                    );
-                    const settings = { ...defaultUserSetting() };
-                    console.log(
-                        'no saved settings. going to use and save default settings',
-                        settings
-                    );
-
-                    const saveSuccess =
-                        saveSettingsToExtensionStorage(settings);
-                    console.log('saveSuccess?: ', saveSuccess);
-                    resolve(settings);
-                    // reject();
-                } else {
-                    // @ts-expect-error todo
-                    resolve(value[settingsKey]);
-                }
-            });
-        } catch (err) {
-            console.log('err - caught');
-            reject(err);
-        }
-    });
-};
+// tod type
+export const getSettingsFromExtensionStorage: () => Promise<UserSettings> =
+    async (): Promise<UserSettings> => {
+        return (
+            chrome.storage.local
+                .get([settingsKey])
+                // todo - tidy/extract
+                .then((value) => {
+                    if (
+                        !value ||
+                        value[settingsKey] === undefined ||
+                        Object.entries(value[settingsKey]).length === 0 ||
+                        Object.keys(value[settingsKey]).filter(
+                            (i) => !getNamesOfFields().includes(i)
+                        ).length > 0
+                    ) {
+                        console.log(
+                            `no store with key ${settingsKey} in extension storage`,
+                            value
+                        );
+                        const settings = { ...defaultUserSetting() };
+                        console.log(
+                            'no saved settings. going to use and save default settings',
+                            settings
+                        );
+                        const saveSuccess =
+                            saveSettingsToExtensionStorage(settings);
+                        console.log('saveSuccess?: ', saveSuccess);
+                        return settings;
+                        // reject();
+                    } else {
+                        return value[settingsKey];
+                    }
+                })
+                .catch((err) => {
+                    console.log('err: ', err);
+                    return { ...defaultUserSetting() };
+                })
+        );
+    };
 
 export const saveSettingsToExtensionStorage = async (settings: object) => {
-    return new Promise((resolve, reject) => {
-        try {
-            chrome.storage.local.set({ [settingsKey]: settings }, function () {
-                resolve('settings saved');
-            });
-        } catch (ex) {
-            reject(ex);
-        }
-    });
+    return chrome.storage.local
+        .set({ [settingsKey]: settings })
+        .then(() => {
+            console.log('saved settings');
+            return 'SUCCESS';
+        })
+        .catch((ex) => {
+            return 'ERROR';
+        });
 };
 
+// todo
 export const saveSettingToExtensionStorage = async (settings: object) => {
     return new Promise((resolve, reject) => {
         try {

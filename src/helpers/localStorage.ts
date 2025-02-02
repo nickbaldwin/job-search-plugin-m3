@@ -8,7 +8,7 @@ import {
 // todo - update key
 const settingsKey = 'job-search-plugin-field-settings-old';
 
-// tod type
+// todo type
 export const getSettingsFromExtensionStorage: () => Promise<UserSettings> =
     async (): Promise<UserSettings> => {
         return (
@@ -16,13 +16,16 @@ export const getSettingsFromExtensionStorage: () => Promise<UserSettings> =
                 .get([settingsKey])
                 // todo - tidy/extract
                 .then((value) => {
+                    // make sure we have valid settings
                     if (
                         !value ||
                         value[settingsKey] === undefined ||
-                        Object.entries(value[settingsKey]).length === 0 ||
+                        Object.keys(value[settingsKey]).length === 0 ||
                         Object.keys(value[settingsKey]).filter(
                             (i) => !getNamesOfFields().includes(i)
-                        ).length > 0
+                        ).length > 0 ||
+                        getNamesOfFields().filter((i) => !value[settingsKey][i])
+                            .length > 0
                     ) {
                         console.log(
                             `no store with key ${settingsKey} in extension storage`,
@@ -30,16 +33,16 @@ export const getSettingsFromExtensionStorage: () => Promise<UserSettings> =
                         );
                         const settings = { ...defaultUserSetting() };
                         console.log(
-                            'no saved settings. going to use and save default settings',
+                            'no valid saved settings. going to use and save default settings',
                             settings
                         );
                         const saveSuccess =
                             saveSettingsToExtensionStorage(settings);
                         console.log('saveSuccess?: ', saveSuccess);
                         return settings;
-                        // reject();
                     } else {
-                        return value[settingsKey];
+                        // todo - check
+                        return value[settingsKey]; // as UserSettings;
                     }
                 })
                 .catch((err) => {
@@ -138,24 +141,4 @@ export const saveSettings = (store: object) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-// todo - WIP
-
-interface Store {
-    [key: string]: UserSettings;
-}
-
  */
-
-// todo - use settings type

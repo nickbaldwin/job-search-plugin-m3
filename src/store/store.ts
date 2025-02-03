@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import zustymiddlewarets from 'zustymiddlewarets';
 
-import { DisplayJob, transformJobs } from '../schema/transform';
+import { DisplayJob, transformJobs } from '../schema/displayJob.ts';
 import { DataProperty } from '../schema/settings.ts';
 
 interface ResultsData {

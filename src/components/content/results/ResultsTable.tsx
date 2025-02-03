@@ -1,6 +1,6 @@
-import { DisplayJob } from '../../../schema/transform.ts';
+import { DisplayJob } from '../../../schema/displayJob.ts';
 import { ResultRow } from './ResultsRow.tsx';
-// import { Job } from '../../schema/jobSchema.ts';
+// import { Job } from '../../schema/job.ts';
 import { getNamesOfFields } from '../../../schema/settings.ts';
 
 export const ResultsTable = ({ results }: { results: DisplayJob[] }) => {

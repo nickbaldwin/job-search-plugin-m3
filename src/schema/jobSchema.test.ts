@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
-import { parseJob } from './jobSchema.ts';
-import sampleJob from './sampleJob.json';
+import { parseJob } from './job.ts';
+import sampleJob from './samples/sampleJob.json';
 
 test('parsing fails if required properties not included', () => {
     expect(parseJob({ jobId: '1234' })).toMatchObject({ success: false });

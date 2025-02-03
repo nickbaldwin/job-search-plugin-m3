@@ -1,4 +1,4 @@
-import { parseJob } from './jobSchema.ts';
+import { parseJob } from './job.ts';
 
 // todo - move interface or dynamically construct it
 export interface DisplayJob {

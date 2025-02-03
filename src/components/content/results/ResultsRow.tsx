@@ -1,4 +1,4 @@
-import { DisplayJob } from '../../../schema/transform.ts';
+import { DisplayJob } from '../../../schema/displayJob.ts';
 
 export const ResultRow = ({
     result,

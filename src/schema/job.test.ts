@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { sampleImpressionUrl } from './impressionUrl.ts';
+import { sampleImpressionUrl } from './samples/impressionUrl.ts';
 import {
     getDataFromUrl,
     formatLocation,
@@ -7,7 +7,7 @@ import {
     formatMescos,
     formatDate,
     formatProviderJobId,
-} from './helpers.ts';
+} from './jobHelpers.ts';
 
 test('can decode valid impression url', () => {
     const data = getDataFromUrl(sampleImpressionUrl);

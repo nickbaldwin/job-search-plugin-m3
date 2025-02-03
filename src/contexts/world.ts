@@ -115,22 +115,7 @@ const sendContext = (nodeWithRequestInfo: {
                     logType: 'info',
                     moduleName,
                     fn: 'sendRequest',
-                    payload: {
-                        location: n.location,
-                        client: {
-                            amplitudeDeviceId: n.client.amplitudeDeviceId,
-                            fingerprintId: n.client.fingerprintId,
-                            ipAddress: n.client.ipAddress,
-                        },
-                        software: n.software,
-                        // @ts-expect-error added to window by SVX
-                        totalSize: window.searchResults?.totalSize,
-                        // @ts-expect-error added to window by SVX
-                        searchId: window.searchResults?.searchId,
-                        fingerprintId:
-                            // @ts-expect-error added to window by SVX
-                            window.searchResults?.jobRequest?.fingerprintId,
-                    },
+                    payload: n,
                 });
 
                 window.postMessage(

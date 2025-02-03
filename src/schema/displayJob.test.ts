@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
-import { transformJob } from './transform.ts';
-import job from './sampleJob.json';
+import { transformJob } from './displayJob.ts';
+import job from './samples/sampleJob.json';
 
 test('transformed job has correct properties', () => {
     expect(transformJob(job, 15)).toMatchObject({

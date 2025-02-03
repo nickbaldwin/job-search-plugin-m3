@@ -1,4 +1,4 @@
-import { formatDate } from './helpers.ts';
+import { formatDate } from './jobHelpers.ts';
 
 export const currentVersion = {
     version: '4.0.0',

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { DisplayJob } from './transform.ts';
+import { DisplayJob } from './displayJob.ts';
 import {
     formatDate,
     formatLocation,
@@ -8,7 +8,7 @@ import {
     formatProviderJobId,
     getDataFromUrl,
     KevelData,
-} from './helpers.ts';
+} from './jobHelpers.ts';
 
 const Job = z
     .object({

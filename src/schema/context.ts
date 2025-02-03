@@ -6,7 +6,7 @@ const Context = z
             z.object({
                 ipAddress: z.string(),
                 fingerprintId: z.string(),
-                amplitudeDeviceIdz: z.string(),
+                amplitudeDeviceId: z.string(),
             })
         ),
         software: z.optional(
@@ -16,7 +16,7 @@ const Context = z
                 language: z.string(),
                 siteId: z.string(),
                 tenant: z.string(),
-                pageSize: z.string(),
+                pageSize: z.number(),
                 host: z.string(),
                 originHost: z.string(),
             })
@@ -34,35 +34,28 @@ const Context = z
         return {
             ipAddress: item.client?.ipAddress || '',
             fingerprintId: item.client?.fingerprintId || '',
-            amplitudeDeviceIdz: item.client?.amplitudeDeviceIdz || '',
+            amplitudeDeviceId: item.client?.amplitudeDeviceId || '',
             environment: item.software?.environment || '',
-            country: item.software?.environment || '',
-            language: item.software?.environment || '',
-            pageSize: item.software?.environment || '',
+            country: item.software?.country || '',
+            language: item.software?.language || '',
+            pageSize: '' + item.software?.pageSize || '',
             host: item.software?.environment || '',
             query: item.location?.currentLocation || '',
-            data: item,
+            //data: item,
         };
     });
 
-export type Context = {
-    ipAddress: string;
-    fingerprintId: string;
-    amplitudeDeviceIdz: string;
-    environment: string;
-    country: string;
-    language: string;
-    pageSize: string;
-    host: string;
-    query: string;
-    data: object;
-};
+export type Context = z.infer<typeof Context>;
+// export type Context = {
+//    [key: string]: string;
+//};
+
 export type ParsedContext = {
     success: boolean;
     // error? string;
     data?: Context;
 };
 
-export const parseJob = (ctx: object): ParsedContext => {
+export const parseContext = (ctx: object): ParsedContext => {
     return Context.safeParse(ctx);
 };

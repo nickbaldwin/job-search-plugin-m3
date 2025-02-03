@@ -1,28 +1,25 @@
 {
-    "client": {
-        "ipAddress": "208.71.192.1",
-        "fingerprintId": "z87b345ba7b1277406f4a2c71bc6640d7",
-        "amplitudeDeviceId": "random-ad5ef97d-b429-4c8a-8877-51e860f755e6"
-    },
-    "software": {
+  "client": {
+    "ipAddress": "208.71.192.1",
+    "fingerprintId": "z87b345ba7b1277406f4a2c71bc6640d7",
+    "amplitudeDeviceId": "random-ad5ef97d-b429-4c8a-8877-51e860f755e6"
+  },
+  "software": {
     "environment": "prod",
-        "country": "us",
-        "language": "en",
-        "siteId": "monster.com",
-        "tenant": "monster",
-        "pageSize": 18,
-        "host": "www.monster.com",
-        "originHost": "www.monster.com"
-    },
-    "location": {
-        "currentLocation": "/jobs/q-customer-service-jobs?so=p.h.p",
-        "urlParams": {
-            "so": "p.h.p",
-            "distributor": [
-                "jobs",
-                "q-customer-service-jobs"
-            ],
-            "page": "1"
-        }
+    "country": "us",
+    "language": "en",
+    "siteId": "monster.com",
+    "tenant": "monster",
+    "pageSize": 18,
+    "host": "www.monster.com",
+    "originHost": "www.monster.com"
+  },
+  "location": {
+    "currentLocation": "/jobs/q-customer-service-jobs?so=p.h.p",
+    "urlParams": {
+      "so": "p.h.p",
+      "distributor": ["jobs", "q-customer-service-jobs"],
+      "page": "1"
     }
+  }
 }

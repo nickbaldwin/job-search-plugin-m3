@@ -1,0 +1,62 @@
+{
+  "offset": 0,
+  "pageSize": 18,
+  "jobQuery": {
+    "query": "Customer Service",
+    "locations": [
+      {
+        "address": "Ashburn, VA",
+        "country": "us",
+        "radius": {
+          "unit": "mi",
+          "value": 20
+        }
+      }
+    ],
+    "disableSpellCheck": false,
+    "queryLanguageCode": "en-us"
+  },
+  "orderBy": "relevance",
+  "debug": false,
+  "overrideOptions": false,
+  "enableDiversification": false,
+  "disableKeywordMatch": false,
+  "enableBroadening": false,
+  "freeJobsOnly": false,
+  "paidJobsOnly": false,
+  "gctsJobCount": 0,
+  "jobAdsRequest": {
+    "placement": {
+      "channel": "WEB",
+      "location": "JobSearchPage",
+      "property": "monster.com",
+      "type": "JOB_SEARCH",
+      "view": "SPLIT"
+    },
+    "position": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ]
+  },
+  "searchId": "68dc73f2-6c0f-4f27-999a-688a6d49b948",
+  "includeJobs": [],
+  "fingerprintId": "z87b345ba7b1277406f4a2c71bc6640d7",
+  "estimatedTotalSize": 12840,
+  "totalSize": 18
+}

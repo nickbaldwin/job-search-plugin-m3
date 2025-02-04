@@ -8,10 +8,15 @@ import { log } from '../../../utils/logger.ts';
 const moduleName = 'resultsListener';
 
 const updateResults = useStore.getState().updateResults;
+const updateFingerprintId = useStore.getState().updateFingerprintId;
+const updateSearchId = useStore.getState().updateSearchId;
+const updateRequest = useStore.getState().updateRequest;
+const updateContext = useStore.getState().updateContext;
+
 export const ListenerFunction = () => {
     log({ logType: 'info', moduleName, message: 'loaded' });
     const messageHandler = (event: MessageEvent<MessageType>) => {
-        if (event.data?.type === 'results') {
+        if (event.data?.type === 'SEARCH_RESULTS_UPDATED') {
             log({
                 logType: 'info',
                 moduleName,
@@ -23,8 +28,58 @@ export const ListenerFunction = () => {
             // @ts-expect-error todo typing
             updateResults(event?.data?.payload);
             console.log(window.location.href);
-        } else {
-            //
+        }
+
+        if (event.data?.type === 'SEARCH_REQUEST_UPDATED') {
+            log({
+                logType: 'info',
+                moduleName,
+                fn: 'message handler',
+                message: 'search request message received',
+                payload: event?.data,
+            });
+
+            // @ts-expect-error todo typing
+            updateRequest(event?.data?.payload);
+        }
+
+        if (event.data?.type === 'APP_CONTEXT_UPDATED') {
+            log({
+                logType: 'info',
+                moduleName,
+                fn: 'message handler',
+                message: 'app context message received',
+                payload: event?.data,
+            });
+
+            // @ts-expect-error todo typing
+            updateContext(event?.data?.payload);
+        }
+
+        if (event.data?.type === 'SEARCH_ID_UPDATED') {
+            log({
+                logType: 'info',
+                moduleName,
+                fn: 'message handler',
+                message: 'search id message received',
+                payload: event?.data,
+            });
+
+            // @ts-expect-error todo typing
+            updateSearchId(event?.data?.payload);
+        }
+
+        if (event.data?.type === 'FINGERPRINT_ID_UPDATED') {
+            log({
+                logType: 'info',
+                moduleName,
+                fn: 'message handler',
+                message: 'fingerprint id message received',
+                payload: event?.data,
+            });
+
+            // @ts-expect-error todo typing
+            updateFingerprintId(event?.data?.payload);
         }
     };
 

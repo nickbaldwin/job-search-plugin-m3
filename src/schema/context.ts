@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z, ZodError } from 'zod';
 
 const Context = z
     .object({
@@ -45,17 +45,28 @@ const Context = z
         };
     });
 
-export type Context = z.infer<typeof Context>;
-// export type Context = {
-//    [key: string]: string;
-//};
+// export type Context = z.infer<typeof Context>;
+export type Context = {
+    [key: string]: string;
+};
 
 export type ParsedContext = {
     success: boolean;
-    // error? string;
+    error?: ZodError;
     data?: Context;
 };
 
 export const parseContext = (ctx: object): ParsedContext => {
     return Context.safeParse(ctx);
+};
+
+export const transformContext = (ctx: object): Context => {
+    const parsed = parseContext(ctx);
+    if (!parsed) {
+        return { error: 'no request info available' };
+    }
+    if (parsed.error) {
+        return { error: 'there are errors processing the request. see logs' };
+    }
+    return parsed.data || { message: 'no request info' };
 };

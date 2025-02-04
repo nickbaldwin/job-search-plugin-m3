@@ -1,6 +1,22 @@
 import { helper } from '../helpers/helper.ts';
 import { log } from '../utils/logger.ts';
 
+// todo? move into schema and tidy
+declare global {
+    interface Window {
+        searchResults?: {
+            estimatedTotalSize: number;
+            gctsReqId: string;
+            histogramQueryResult: [];
+            jobRequest: { fingerprintId: string };
+            jobResults: object[];
+            requestTime: number;
+            searchId: string;
+            totalSize: number;
+        };
+    }
+}
+
 const moduleName = 'world script';
 log({ logType: 'info', moduleName, message: 'loaded' });
 
@@ -11,14 +27,14 @@ const sendResults = () => {
         logType: 'info',
         moduleName,
         fn: 'sendResults',
-        // @ts-expect-error added to window by SVX
+        // added to window by SVX
         payload: window.searchResults,
     });
 
     window.postMessage(
         {
-            type: 'results',
-            // @ts-expect-error added to window by SVX
+            type: 'SEARCH_RESULTS_UPDATED',
+            // added to window by SVX
             payload: window.searchResults,
             source: 'content',
 
@@ -31,13 +47,14 @@ const sendResults = () => {
 };
 
 const sendSearchId = () => {
-    // @ts-expect-error added to window by SVX
+    // added to window by SVX
     const searchId = window.searchResults?.searchId || '';
 
     log({
         logType: 'info',
         moduleName,
         fn: 'sendSearchId',
+        // todo - typing
         payload: searchId,
     });
 
@@ -51,34 +68,10 @@ const sendSearchId = () => {
     );
 };
 
-const sendFingerprintId = () => {
-    // @ts-expect-error added to window by SVX
-    const fingerprintId = window.searchResults?.fingerprintId || '';
-
-    log({
-        logType: 'info',
-        moduleName,
-        fn: 'sendFingerprintId',
-        payload: fingerprintId,
-    });
-
-    window.postMessage(
-        {
-            type: 'FINGERPRINT_ID_UPDATED',
-            payload: fingerprintId,
-            source: 'content',
-        },
-        '*'
-    );
-};
-
 const sendRequest = () => {
-    // @ts-expect-error added to window by SVX
-    let req = window.searchResults?.jobRequest || {};
-    // @ts-expect-error added to window by SVX
-    req.estimatedTotalSize = window.searchResults?.estimatedTotalSize || 0;
-    // @ts-expect-error added to window by SVX
-    req.totalSize = window.searchResults?.totalSize || 0;
+    // todo - clone?
+    // added to window by SVX
+    const req = window.searchResults?.jobRequest || { fingerprintId: '' };
 
     log({
         logType: 'info',
@@ -95,49 +88,61 @@ const sendRequest = () => {
         },
         '*'
     );
+
+    const fingerprintId = req?.fingerprintId || '';
+    log({
+        logType: 'info',
+        moduleName,
+        fn: 'sendFingerprintId',
+        // todo typing
+        payload: fingerprintId,
+    });
+
+    window.postMessage(
+        {
+            type: 'FINGERPRINT_ID_UPDATED',
+            payload: fingerprintId,
+            source: 'content',
+        },
+        '*'
+    );
 };
 
 // have to use poller here, as memoized state is partially set then updated later with the data
 // todo - parse with zod
 const sendContext = (nodeWithRequestInfo: {
     memoizedState?: {
-        baseState?: { location?: any; client?: any; software?: any };
+        baseState?: { location?: object; client?: object; software?: object };
     };
 }) => {
     if (nodeWithRequestInfo) {
         const poll = setInterval(() => {
-            const n = nodeWithRequestInfo.memoizedState?.baseState;
-            // @ts-ignore
-            if (n?.location) {
+            const ctx = nodeWithRequestInfo.memoizedState?.baseState;
+            if (ctx?.location) {
                 clearInterval(poll);
+
+                // todo - may not be able to send this accross - check
+                const clone = {
+                    location: { ...ctx.location },
+                    client: {
+                        amplitudeDeviceId: ctx.client.amplitudeDeviceId,
+                        fingerprintId: ctx.client.fingerprintId,
+                        ipAddress: ctx.client.ipAddress,
+                    },
+                    software: { ...ctx.software },
+                };
 
                 log({
                     logType: 'info',
                     moduleName,
                     fn: 'sendRequest',
-                    payload: n,
+                    payload: clone,
                 });
 
                 window.postMessage(
                     {
                         type: 'APP_CONTEXT_UPDATED',
-                        // @ts-ignore
-                        payload: {
-                            location: n.location,
-                            client: {
-                                amplitudeDeviceId: n.client.amplitudeDeviceId,
-                                fingerprintId: n.client.fingerprintId,
-                                ipAddress: n.client.ipAddress,
-                            },
-                            software: n.software,
-                            // @ts-expect-error added to window by SVX
-                            totalSize: window.searchResults?.totalSize,
-                            // @ts-expect-error added to window by SVX
-                            searchId: window.searchResults?.searchId,
-                            fingerprintId:
-                                // @ts-expect-error added to window by SVX
-                                window.searchResults?.jobRequest?.fingerprintId,
-                        },
+                        payload: clone,
                         source: 'content',
                     },
                     '*'
@@ -155,16 +160,15 @@ const findRequest = () => {
     for (const key in header) {
         if (key.startsWith('__reactFiber$')) {
             // console.log('header has key');
-            // @ts-ignore
             let item = header[key];
-            let numberIt = 0;
+            let iterations = 0;
             // todo!
             while (
                 item.memoizedState?.baseState?.client === undefined &&
-                numberIt < 50
+                iterations < 50
             ) {
                 item = item?.return;
-                numberIt++;
+                iterations++;
             }
             if (item.memoizedState?.baseState) {
                 return item;
@@ -191,9 +195,8 @@ const poller: number = setInterval((): void => {
         const nodeWithRequestInfo = findRequest();
         const sendData = () => {
             sendResults();
-            sendRequest();
+            sendRequest(); // and fingerprintId
             sendSearchId();
-            sendFingerprintId();
             sendContext(nodeWithRequestInfo);
         };
         // need to send initial results, for popular searches

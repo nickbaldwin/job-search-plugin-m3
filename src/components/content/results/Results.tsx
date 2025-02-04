@@ -4,6 +4,8 @@ import { Table } from './Table.tsx';
 
 export const Results = () => {
     const resultsSize = useStore((state) => state.resultsSize);
+    const searchId = useStore((state) => state.searchId);
+    const fingerprintId = useStore((state) => state.fingerprintId);
     const results = useStore((state) => state.results);
     const settings = useStore((state) => state.settings);
 
@@ -18,7 +20,8 @@ export const Results = () => {
     return (
         <>
             <p>There are {resultsSize} results</p>
-
+            <p>Search id: {searchId} </p>
+            <p>Fingerprint id: {fingerprintId} </p>
             <Table results={results} hiddenSettings={hiddenSettings} />
         </>
     );

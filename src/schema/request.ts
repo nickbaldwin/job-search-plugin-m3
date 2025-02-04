@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z, ZodError } from 'zod';
 
 // todo - identify optional properties
 const Request = z
@@ -42,8 +42,8 @@ const Request = z
         searchId: z.string(),
         includeJobs: z.array(z.string()),
         fingerprintId: z.string(),
-        estimatedTotalSize: z.number(),
-        totalSize: z.number(),
+        estimatedTotalSize: z.optional(z.number()),
+        totalSize: z.optional(z.number()),
     })
     .transform((item) => {
         return {
@@ -80,22 +80,36 @@ const Request = z
             jobAdsRequestPosition: item.jobAdsRequest.position.join(', ') || '',
             searchId: item.searchId || '',
             fingerprintId: item.fingerprintId || '',
-            estimatedTotalSize: '' + item.estimatedTotalSize || '',
-            totalSize: '' + item.totalSize || '',
+            estimatedTotalSize: item.estimatedTotalSize
+                ? '' + item.estimatedTotalSize
+                : '',
+            totalSize: item.totalSize ? '' + item.totalSize : '',
             // data: item,
         };
     });
 
-export type Request = z.infer<typeof Request>;
-//export type Request = {
-//    [key: string]: string;
-// };
+// export type Request = z.infer<typeof Request>;
+export type Request = {
+    [key: string]: string;
+};
 export type ParsedRequest = {
     success: boolean;
-    // error? string;
+    error?: ZodError;
     data?: Request;
 };
 
 export const parseRequest = (req: object): ParsedRequest => {
     return Request.safeParse(req);
+};
+
+export const transformRequest = (req: object): Request => {
+    const parsed = parseRequest(req);
+    console.log('parsed request', parsed);
+    if (!parsed) {
+        return { error: 'no request info available' };
+    }
+    if (parsed.error) {
+        return { error: 'there are errors processing the request. see logs' };
+    }
+    return parsed.data || { message: 'no request info' };
 };

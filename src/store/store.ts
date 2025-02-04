@@ -2,6 +2,9 @@ import { create } from 'zustand';
 import zustymiddlewarets from 'zustymiddlewarets';
 
 import { DisplayJob, transformJobs } from '../schema/displayJob.ts';
+import { transformRequest } from '../schema/request.ts';
+import { transformContext } from '../schema/context.ts';
+
 import { DataProperty } from '../schema/settings.ts';
 
 interface ResultsData {
@@ -14,62 +17,73 @@ interface State {
     bears: number;
     increase: (by: number) => void;
 
-    resultsSize: number;
     results: DisplayJob[];
-    resultsLast: ResultsData | null;
-    resultsHistory: ResultsData[];
-    updateResults: (add: ResultsData) => void;
-
+    resultsSize: number;
+    resultsLastTime: string;
+    searchId: string;
+    fingerprintId: string;
+    request: Record<string, string>;
+    context: Record<string, string>;
     settings: Record<string, DataProperty>;
-    updateSettings: (add: Record<string, DataProperty>) => void;
 
-    url: string;
-    urlHistory: string[];
-    updateUrl: (to: string) => void;
+    updateResults: (add: ResultsData) => void;
+    updateSearchId: (to: string) => void;
+    updateFingerprintId: (to: string) => void;
+    updateRequest: (to: Record<string, string>) => void;
+    updateContext: (to: Record<string, string>) => void;
+    updateSettings: (add: Record<string, DataProperty>) => void;
 }
 
 const useStore = create<State>()(
     // todo - config for devtools
-    // @ts-expect-error any
     zustymiddlewarets((set) => ({
         bears: 0,
 
         results: [],
         resultsSize: 0,
-        resultsLast: null,
-        resultsHistory: [],
-
+        resultsLastTime: '',
+        searchId: '',
+        fingerprintId: '',
+        request: {},
+        context: {},
         settings: {},
-
-        url: '',
-        urlHistory: [],
 
         increase: (by: number) =>
             set((state: { bears: number }) => ({ bears: state.bears + by })),
-        updateResults: (payload: object) => {
-            const results = {
-                timestamp: new Date().toISOString(), // todo send in
-                // @ts-expect-error todo typing
-                size: payload?.jobResults?.length || 0,
-                jobIds:
-                    // @ts-expect-error todo typing
-                    payload?.jobResults?.map(
-                        (j: { jobId: string }) => j.jobId
-                    ) || [],
-            };
-            console.log('results', results);
 
+        updateResults: (payload: object) => {
             // @ts-expect-error ugh
             const transformedJobs = transformJobs(payload?.jobResults || []);
-            set((state: { resultsHistory: ResultsData[] }) => ({
+            set(() => ({
                 results: transformedJobs,
-                // resultsData: displayJobs.data.source,
-                resultsHistory: [...state.resultsHistory, results],
-                resultsSize: results.size,
-                resultsLast: results,
+                resultsSize: transformedJobs.length,
+                resultsLastTime: new Date().toISOString(),
             }));
         },
-
+        updateSearchId: (payload: string) => {
+            set(() => ({
+                searchId: payload,
+            }));
+        },
+        updateFingerprintId: (payload: string) => {
+            set(() => ({
+                fingerprintId: payload,
+            }));
+        },
+        updateRequest: (payload: object) => {
+            const transformedRequest = transformRequest(payload);
+            console.log('transformed request', transformedRequest);
+            set(() => ({
+                request: transformedRequest,
+            }));
+        },
+        updateContext: (payload: object) => {
+            const transformedContext = transformContext(payload);
+            console.log('transformed context', transformedContext);
+            set(() => ({
+                context: transformedContext,
+            }));
+        },
         updateSettings: (payload: Record<string, DataProperty>) => {
             set(() => ({ settings: payload }));
         },

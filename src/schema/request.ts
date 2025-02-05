@@ -82,7 +82,7 @@ const Request = z
         };
     });
 
-// export type Request = z.infer<typeof Request>;
+// export type Info = z.infer<typeof Info>;
 export type Request = {
     [key: string]: string;
 };

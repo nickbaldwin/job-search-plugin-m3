@@ -8,6 +8,7 @@ import {
 import { Results } from './results/Results.tsx';
 import { AppLayout } from './AppLayout.tsx';
 import { Settings } from './settings/Settings.tsx';
+import { Request } from './request/Request.tsx';
 import './App.css';
 
 const hashHistory = createHashHistory();
@@ -28,5 +29,15 @@ const settingsRoute = createRoute({
     component: Settings,
 });
 
-const routeTree = rootRoute.addChildren([indexRoute, settingsRoute]);
+const requestRoute = createRoute({
+    getParentRoute: () => rootRoute,
+    path: '/request',
+    component: Request,
+});
+
+const routeTree = rootRoute.addChildren([
+    indexRoute,
+    settingsRoute,
+    requestRoute,
+]);
 export const router = createRouter({ routeTree, history: hashHistory });

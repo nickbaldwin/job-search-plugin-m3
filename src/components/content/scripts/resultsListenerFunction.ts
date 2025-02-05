@@ -12,6 +12,7 @@ const updateFingerprintId = useStore.getState().updateFingerprintId;
 const updateSearchId = useStore.getState().updateSearchId;
 const updateRequest = useStore.getState().updateRequest;
 const updateContext = useStore.getState().updateContext;
+const updateEstimatedTotalSize = useStore.getState().updateEstimatedTotalSize;
 
 export const ListenerFunction = () => {
     log({ logType: 'info', moduleName, message: 'loaded' });
@@ -24,10 +25,21 @@ export const ListenerFunction = () => {
                 message: 'results message received',
                 payload: event?.data,
             });
-
             // @ts-expect-error todo typing
             updateResults(event?.data?.payload);
             console.log(window.location.href);
+        }
+
+        if (event.data?.type === 'ESTIMATED_TOTAL_SIZE_UPDATED') {
+            log({
+                logType: 'info',
+                moduleName,
+                fn: 'message handler',
+                message: 'estimated total size message received',
+                payload: event?.data,
+            });
+            // @ts-expect-error todo typing
+            updateEstimatedTotalSize(event?.data?.payload);
         }
 
         if (event.data?.type === 'SEARCH_REQUEST_UPDATED') {
@@ -38,7 +50,6 @@ export const ListenerFunction = () => {
                 message: 'search request message received',
                 payload: event?.data,
             });
-
             // @ts-expect-error todo typing
             updateRequest(event?.data?.payload);
         }
@@ -51,7 +62,6 @@ export const ListenerFunction = () => {
                 message: 'app context message received',
                 payload: event?.data,
             });
-
             // @ts-expect-error todo typing
             updateContext(event?.data?.payload);
         }
@@ -64,7 +74,6 @@ export const ListenerFunction = () => {
                 message: 'search id message received',
                 payload: event?.data,
             });
-
             // @ts-expect-error todo typing
             updateSearchId(event?.data?.payload);
         }
@@ -77,7 +86,6 @@ export const ListenerFunction = () => {
                 message: 'fingerprint id message received',
                 payload: event?.data,
             });
-
             // @ts-expect-error todo typing
             updateFingerprintId(event?.data?.payload);
         }

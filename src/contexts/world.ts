@@ -28,6 +28,7 @@ const sendResults = () => {
         moduleName,
         fn: 'sendResults',
         // added to window by SVX
+        // todo - just pass results object
         payload: window.searchResults,
     });
 
@@ -38,7 +39,7 @@ const sendResults = () => {
             payload: window.searchResults,
             source: 'content',
 
-            // todo
+            // todo - just pass results object
             // type: 'JOB_RESULTS_UPDATED',
             // payload: window.searchResults?.jobResults || [],
         },
@@ -62,6 +63,28 @@ const sendSearchId = () => {
         {
             type: 'SEARCH_ID_UPDATED',
             payload: searchId,
+            source: 'content',
+        },
+        '*'
+    );
+};
+
+const sendEstimatedTotalSize = () => {
+    // added to window by SVX
+    const est = window.searchResults?.estimatedTotalSize || '';
+
+    log({
+        logType: 'info',
+        moduleName,
+        fn: 'sendEstimatedTotalSize',
+        // todo - typing
+        payload: est,
+    });
+
+    window.postMessage(
+        {
+            type: 'ESTIMATED_TOTAL_SIZE_UPDATED',
+            payload: est,
             source: 'content',
         },
         '*'
@@ -112,7 +135,15 @@ const sendRequest = () => {
 // todo - parse with zod
 const sendContext = (nodeWithRequestInfo: {
     memoizedState?: {
-        baseState?: { location?: object; client?: object; software?: object };
+        baseState?: {
+            location?: object;
+            client?: {
+                amplitudeDeviceId: string;
+                fingerprintId: string;
+                ipAddress: string;
+            };
+            software?: object;
+        };
     };
 }) => {
     if (nodeWithRequestInfo) {
@@ -121,21 +152,20 @@ const sendContext = (nodeWithRequestInfo: {
             if (ctx?.location) {
                 clearInterval(poll);
 
-                // todo - may not be able to send this accross - check
                 const clone = {
-                    location: { ...ctx.location },
+                    ...ctx,
+                    // do not copy property with function that can't be serialized
                     client: {
-                        amplitudeDeviceId: ctx.client.amplitudeDeviceId,
-                        fingerprintId: ctx.client.fingerprintId,
-                        ipAddress: ctx.client.ipAddress,
+                        amplitudeDeviceId: ctx?.client?.amplitudeDeviceId,
+                        fingerprintId: ctx?.client?.fingerprintId,
+                        ipAddress: ctx?.client?.ipAddress,
                     },
-                    software: { ...ctx.software },
                 };
 
                 log({
                     logType: 'info',
                     moduleName,
-                    fn: 'sendRequest',
+                    fn: 'sendContext',
                     payload: clone,
                 });
 
@@ -159,7 +189,7 @@ const findRequest = () => {
     }
     for (const key in header) {
         if (key.startsWith('__reactFiber$')) {
-            // console.log('header has key');
+            // @ts-expect-error no need to type this
             let item = header[key];
             let iterations = 0;
             // todo!
@@ -195,6 +225,7 @@ const poller: number = setInterval((): void => {
         const nodeWithRequestInfo = findRequest();
         const sendData = () => {
             sendResults();
+            sendEstimatedTotalSize();
             sendRequest(); // and fingerprintId
             sendSearchId();
             sendContext(nodeWithRequestInfo);

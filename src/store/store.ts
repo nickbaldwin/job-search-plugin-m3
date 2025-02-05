@@ -19,6 +19,7 @@ interface State {
 
     results: DisplayJob[];
     resultsSize: number;
+    resultsEstimatedTotalSize: number;
     resultsLastTime: string;
     searchId: string;
     fingerprintId: string;
@@ -27,6 +28,7 @@ interface State {
     settings: Record<string, DataProperty>;
 
     updateResults: (add: ResultsData) => void;
+    updateEstimatedTotalSize: (to: number) => void;
     updateSearchId: (to: string) => void;
     updateFingerprintId: (to: string) => void;
     updateRequest: (to: Record<string, string>) => void;
@@ -41,6 +43,7 @@ const useStore = create<State>()(
 
         results: [],
         resultsSize: 0,
+        resultsEstimatedTotalSize: 0,
         resultsLastTime: '',
         searchId: '',
         fingerprintId: '',
@@ -51,6 +54,7 @@ const useStore = create<State>()(
         increase: (by: number) =>
             set((state: { bears: number }) => ({ bears: state.bears + by })),
 
+        // todo - just pass results object
         updateResults: (payload: object) => {
             // @ts-expect-error ugh
             const transformedJobs = transformJobs(payload?.jobResults || []);
@@ -58,6 +62,11 @@ const useStore = create<State>()(
                 results: transformedJobs,
                 resultsSize: transformedJobs.length,
                 resultsLastTime: new Date().toISOString(),
+            }));
+        },
+        updateEstimatedTotalSize: (payload: number) => {
+            set(() => ({
+                resultsEstimatedTotalSize: payload,
             }));
         },
         updateSearchId: (payload: string) => {

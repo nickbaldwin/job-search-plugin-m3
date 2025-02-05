@@ -42,8 +42,6 @@ const Request = z
         searchId: z.string(),
         includeJobs: z.array(z.string()),
         fingerprintId: z.string(),
-        estimatedTotalSize: z.optional(z.number()),
-        totalSize: z.optional(z.number()),
     })
     .transform((item) => {
         return {
@@ -80,10 +78,6 @@ const Request = z
             jobAdsRequestPosition: item.jobAdsRequest.position.join(', ') || '',
             searchId: item.searchId || '',
             fingerprintId: item.fingerprintId || '',
-            estimatedTotalSize: item.estimatedTotalSize
-                ? '' + item.estimatedTotalSize
-                : '',
-            totalSize: item.totalSize ? '' + item.totalSize : '',
             // data: item,
         };
     });

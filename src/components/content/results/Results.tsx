@@ -8,6 +8,9 @@ export const Results = () => {
     const fingerprintId = useStore((state) => state.fingerprintId);
     const results = useStore((state) => state.results);
     const settings = useStore((state) => state.settings);
+    const estimatedTotalSize = useStore(
+        (state) => state.resultsEstimatedTotalSize
+    );
 
     const visibleSettings = Object.keys(settings).filter(
         (s) => !settings[s].visible
@@ -22,6 +25,7 @@ export const Results = () => {
             <p>There are {resultsSize} results</p>
             <p>Search id: {searchId} </p>
             <p>Fingerprint id: {fingerprintId} </p>
+            <p>Estimated total size: {estimatedTotalSize} </p>
             <Table results={results} hiddenSettings={hiddenSettings} />
         </>
     );

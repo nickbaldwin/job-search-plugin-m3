@@ -7,6 +7,7 @@ import { transformContext } from '../schema/context.ts';
 
 import { DataProperty } from '../schema/settings.ts';
 
+// todo
 interface ResultsData {
     timestamp: string;
     size: number;
@@ -21,6 +22,7 @@ interface State {
     resultsSize: number;
     resultsEstimatedTotalSize: number;
     resultsLastTime: string;
+    cookieValue: string;
     searchId: string;
     fingerprintId: string;
     request: Record<string, string>;
@@ -29,6 +31,7 @@ interface State {
 
     updateResults: (add: ResultsData) => void;
     updateEstimatedTotalSize: (to: number) => void;
+    updateCookieValue: (to: string) => void;
     updateSearchId: (to: string) => void;
     updateFingerprintId: (to: string) => void;
     updateRequest: (to: Record<string, string>) => void;
@@ -45,6 +48,7 @@ const useStore = create<State>()(
         resultsSize: 0,
         resultsEstimatedTotalSize: 0,
         resultsLastTime: '',
+        cookieValue: '',
         searchId: '',
         fingerprintId: '',
         request: {},
@@ -62,6 +66,11 @@ const useStore = create<State>()(
                 results: transformedJobs,
                 resultsSize: transformedJobs.length,
                 resultsLastTime: new Date().toISOString(),
+            }));
+        },
+        updateCookieValue: (payload: string) => {
+            set(() => ({
+                cookieValue: payload,
             }));
         },
         updateEstimatedTotalSize: (payload: number) => {

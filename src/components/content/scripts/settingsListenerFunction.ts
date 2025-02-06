@@ -9,6 +9,7 @@ import { log } from '../../../utils/logger.ts';
 const moduleName = 'settingsListener';
 
 const updateSettings = useStore.getState().updateSettings;
+const updateCookieValue = useStore.getState().updateCookieValue;
 
 export const settingsListenerFunction = () => {
     log({ logType: 'info', moduleName, message: 'loaded' });
@@ -26,9 +27,29 @@ export const settingsListenerFunction = () => {
             // todo
             updateSettings(messageType.payload);
             console.log(window.location.href);
-        } else {
-            // nothing!
         }
+
+        if (messageType.type === 'COOKIE_SET') {
+            log({
+                logType: 'info',
+                moduleName,
+                fn: 'message handler',
+                message: `${messageType.type} message received`,
+                payload: { payload: messageType.payload },
+            });
+
+            if (
+                messageType.payload &&
+                // @ts-ignore
+                window.location.host.match(messageType.payload?.domain)
+            ) {
+                console.log('update cookie here');
+                // @ts-ignore
+                updateCookieValue(messageType.payload.value);
+            }
+        }
+
+        // todo - unset cookie
     };
     subscribeToExtensionMessages(messageHandler, moduleName);
 
@@ -47,5 +68,12 @@ export const settingsListenerFunction = () => {
     sendMessageToBackgroundAndPopup({
         type: 'LOGIN_STATUS_REQUEST',
         source: moduleName,
+    });
+
+    // todo
+    sendMessageToBackgroundAndPopup({
+        type: 'COOKIE_REQUEST',
+        source: moduleName,
+        payload: { domain: 'monster.com' },
     });
 };

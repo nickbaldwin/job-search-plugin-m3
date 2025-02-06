@@ -29,6 +29,23 @@ try {
             });
         }
 
+        if (message.type === 'COOKIE_REQUEST') {
+            console.log('check for cookie');
+
+            // todo - pass in the url (from content script) to get the cookie from
+            chrome.cookies.getAll({ name: 'jaType' }, function (cookies) {
+                cookies.forEach((cookie) => {
+                    if (cookie.name === 'jaType') {
+                        console.log(cookie);
+                        sendMessageToContent({
+                            type: 'COOKIE_SET',
+                            payload: cookie,
+                        });
+                    }
+                });
+            });
+        }
+
         if (message.type === 'TOGGLE_SETTING_VISIBILITY') {
             console.log('save setting');
 
@@ -77,3 +94,16 @@ try {
         payload: e || {},
     });
 }
+
+/*
+
+
+ */
+
+/* const cookieName = 'jaType';
+const url = window.location.href;
+chrome.cookies.get({ url: url, name: cookieName }, function (cookie) {
+    console.log('cookie', cookie);
+});
+
+ */

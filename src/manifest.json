@@ -17,6 +17,52 @@
         "storage",
         "tabs"
     ],
+    "host_permissions": [
+        "*://*.monster.at/*",
+        "*://*.monster.be/*",
+        "*://*.monster.ca/*",
+        "*://*.monster.fr/*",
+        "*://*.monster.de/*",
+        "*://*.monster.ie/*",
+        "*://*.monster.it/*",
+        "*://*.monster.lu/*",
+        "*://*.monsterboard.nl/*",
+        "*://*.monster.es/*",
+        "*://*.monster.se/*",
+        "*://*.monster.ch/*",
+        "*://*.monster.co.uk/*",
+        "*://*.monster.com/*",
+
+        "*://*.nxtpreprod.monster.at/*",
+        "*://*.nxtpreprod.monster.be/*",
+        "*://*.nxtpreprod.monster.ca/*",
+        "*://*.nxtpreprod.monster.fr/*",
+        "*://*.nxtpreprod.monster.de/*",
+        "*://*.nxtpreprod.monster.ie/*",
+        "*://*.nxtpreprod.monster.it/*",
+        "*://*.nxtpreprod.monster.lu/*",
+        "*://*.nxtpreprod.monsterboard.nl/*",
+        "*://*.nxtpreprod.monster.es/*",
+        "*://*.nxtpreprod.monster.se/*",
+        "*://*.nxtpreprod.monster.ch/*",
+        "*://*.nxtpreprod.monster.co.uk/*",
+        "*://*.nxtpreprod.monster.com/*",
+
+        "*://*.nxtdev.monster.at/*",
+        "*://*.nxtdev.monster.be/*",
+        "*://*.nxtdev.monster.ca/*",
+        "*://*.nxtdev.monster.fr/*",
+        "*://*.nxtdev.monster.de/*",
+        "*://*.nxtdev.monster.ie/*",
+        "*://*.nxtdev.monster.it/*",
+        "*://*.nxtdev.monster.lu/*",
+        "*://*.nxtdev.monsterboard.nl/*",
+        "*://*.nxtdev.monster.es/*",
+        "*://*.nxtdev.monster.se/*",
+        "*://*.nxtdev.monster.ch/*",
+        "*://*.nxtdev.monster.com/*",
+        "*://*.nxtdev.monster.co.uk/*"
+    ],
     "action": {
         "default_popup": "src/contexts/popup.html"
     },
@@ -35,8 +81,8 @@
                 "*://*.monster.be/nl/vacatures/*",
                 "*://*.monster.ca/jobs/*",
                 "*://*.monster.ca/fr/emploi/*",
-                "*://*.monster.de/jobs/*",
                 "*://*.monster.fr/emploi/*",
+                "*://*.monster.de/jobs/*",
                 "*://*.monster.ie/jobs/*",
                 "*://*.monster.it/lavoro/*",
                 "*://*.monster.lu/en/jobs/*",
@@ -56,20 +102,21 @@
                 "*://*.nxtpreprod.monster.be/nl/vacatures/*",
                 "*://*.nxtpreprod.monster.ca/jobs/*",
                 "*://*.nxtpreprod.monster.ca/fr/emploi/*",
-                "*://*.nxtpreprod.monster.ch/de/jobs/*",
-                "*://*.nxtpreprod.monster.ch/fr/emploi/*",
-                "*://*.nxtpreprod.monster.com/jobs/*",
-                "*://*.nxtpreprod.monster.co.uk/jobs/*",
-                "*://*.nxtpreprod.monster.de/jobs/*",
-                "*://*.nxtpreprod.monster.es/trabajo/*",
                 "*://*.nxtpreprod.monster.fr/emploi/*",
+                "*://*.nxtpreprod.monster.de/jobs/*",
                 "*://*.nxtpreprod.monster.ie/jobs/*",
                 "*://*.nxtpreprod.monster.it/lavoro/*",
                 "*://*.nxtpreprod.monster.lu/en/jobs/*",
                 "*://*.nxtpreprod.monster.lu/fr/emploi/*",
                 "*://*.nxtpreprod.monster.lu/de/jobs/*",
                 "*://*.nxtpreprod.monsterboard.nl/vacatures/*",
+                "*://*.nxtpreprod.monster.es/trabajo/*",
                 "*://*.nxtpreprod.monster.se/jobb/*",
+                "*://*.nxtpreprod.monster.ch/de/jobs/*",
+                "*://*.nxtpreprod.monster.ch/fr/emploi/*",
+                "*://*.nxtpreprod.monster.co.uk/jobs/*",
+                "*://*.nxtpreprod.monster.com/jobs/*",
+
 
                 "*://*.nxtdev.monster.at/jobs/*",
                 "*://*.nxtdev.monster.be/en/jobs/*",
@@ -77,20 +124,20 @@
                 "*://*.nxtdev.monster.be/nl/vacatures/*",
                 "*://*.nxtdev.monster.ca/jobs/*",
                 "*://*.nxtdev.monster.ca/fr/emploi/*",
-                "*://*.nxtdev.monster.ch/de/jobs/*",
-                "*://*.nxtdev.monster.ch/fr/emploi/*",
-                "*://*.nxtdev.monster.com/jobs/*",
-                "*://*.nxtdev.monster.co.uk/jobs/*",
-                "*://*.nxtdev.monster.de/jobs/*",
-                "*://*.nxtdev.monster.es/trabajo/*",
                 "*://*.nxtdev.monster.fr/emploi/*",
+                "*://*.nxtdev.monster.de/jobs/*",
                 "*://*.nxtdev.monster.ie/jobs/*",
                 "*://*.nxtdev.monster.it/lavoro/*",
                 "*://*.nxtdev.monster.lu/en/jobs/*",
                 "*://*.nxtdev.monster.lu/fr/emploi/*",
                 "*://*.nxtdev.monster.lu/de/jobs/*",
                 "*://*.nxtdev.monsterboard.nl/vacatures/*",
-                "*://*.nxtdev.monster.se/jobb/*"
+                "*://*.nxtdev.monster.es/trabajo/*",
+                "*://*.nxtdev.monster.se/jobb/*",
+                "*://*.nxtdev.monster.ch/de/jobs/*",
+                "*://*.nxtdev.monster.ch/fr/emploi/*",
+                "*://*.nxtdev.monster.co.uk/jobs/*",
+                "*://*.nxtdev.monster.com/jobs/*"
             ]
         },
         {
@@ -166,7 +213,9 @@
     "web_accessible_resources": [
         {
             "resources": ["icon16.png", "icon48.png", "icon128.png"],
-            "matches": ["*://*.monster.com/*"]
+            "matches": [
+                "<all_urls>"
+            ]
         }
     ]
 }

@@ -11,6 +11,7 @@ export const Results = () => {
     const estimatedTotalSize = useStore(
         (state) => state.resultsEstimatedTotalSize
     );
+    const cookieValue = useStore((state) => state.cookieValue);
 
     const visibleSettings = Object.keys(settings).filter(
         (s) => !settings[s].visible
@@ -26,6 +27,7 @@ export const Results = () => {
             <p>Search id: {searchId} </p>
             <p>Fingerprint id: {fingerprintId} </p>
             <p>Estimated total size: {estimatedTotalSize} </p>
+            {cookieValue && <p>Cookie value: {cookieValue} </p>}
             <Table results={results} hiddenSettings={hiddenSettings} />
         </>
     );

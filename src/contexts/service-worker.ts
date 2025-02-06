@@ -94,16 +94,3 @@ try {
         payload: e || {},
     });
 }
-
-/*
-
-
- */
-
-/* const cookieName = 'jaType';
-const url = window.location.href;
-chrome.cookies.get({ url: url, name: cookieName }, function (cookie) {
-    console.log('cookie', cookie);
-});
-
- */

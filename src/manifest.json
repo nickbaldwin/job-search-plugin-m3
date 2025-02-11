@@ -1,5 +1,5 @@
 {
-    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsxqvf/pn2zINwx/aGiw+u0WIlwC6szBrQMeJzbVBY6oJrhY0Aq6uSw634SoYVyqei6G4nzE9V73GpnHYqig8LZBOOfgAZikHvoMpfGrQHcSGnu5f4J/H7P2QpQxvd57t4S6YG5wuMsIHirXeLe8dXeYQlbPrrllu5vmeX4P+IT5NpeAxMihawm/wjLaiVLEIoY8DUcGCQoe2iJK0aF6HzzPkONzEcIY/GlhsegAf7P/uiF1H8m4uXW9lKqf78JJNyRRwuUKD3DgyDQMU0wvMTu0xhSiGi2w+b6rn5T33ig4hki6dkVHS2RyNQyyvrtQWxwspzv6HsCVBe2dWADhWawIDAQAB",
+    "key" : "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqsMDB2fJCe45BNh3U9p5WvLAT6BXC64KjO9wyRPrKcCULLmnaixJrsbpSe4zxeWRFxHgurcOl1NiPvfQWG0CMqxeMf67AaShaAO2IwhrQeD8RSyKqxdSSqQz/42TWGieSqcjs51ORADslr3bW8BRjKUWeXSnuuLUKbZBkVA++UascXhR9iFchDMljlo9BkfiIlEGBQ8cPRjwGxLkS4WG2PBmmP407xESUXBfERmfIbZbId5tL1uu/E0Tr4OjgnMZOxve1ot1fkImvmSphyJNQGrqcf/vljO4CP3gtqTApSXnvFsdS2W360gqMKT8gkoPphYyv0FFCYlsPtENKQc/BwIDAQAB",
     "name": "Job Search Plugin",
     "description": "Chrome extension for analysing search results",
     "manifest_version": 3,
@@ -18,6 +18,8 @@
         "tabs"
     ],
     "host_permissions": [
+        "https://login.microsoftonline.com",
+
         "*://*.monster.at/*",
         "*://*.monster.be/*",
         "*://*.monster.ca/*",

@@ -49,6 +49,28 @@ export const settingsListenerFunction = () => {
             }
         }
 
+        if (messageType.type === 'MSAL_LOGIN_SUCCESS') {
+            log({
+                logType: 'info',
+                moduleName,
+                fn: 'message handler',
+                message: `${messageType.type} message received`,
+                payload: { payload: messageType.payload },
+            });
+            alert('MSAL_LOGIN_SUCCESS');
+        }
+
+        if (messageType.type === 'MSAL_LOGOUT_SUCCESS') {
+            log({
+                logType: 'info',
+                moduleName,
+                fn: 'message handler',
+                message: `${messageType.type} message received`,
+                payload: { payload: messageType.payload },
+            });
+            alert('MSAL_LOGOUT_SUCCESS');
+        }
+
         // todo - unset cookie
     };
     subscribeToExtensionMessages(messageHandler, moduleName);

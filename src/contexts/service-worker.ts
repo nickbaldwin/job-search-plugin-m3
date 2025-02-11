@@ -94,3 +94,7 @@ try {
         payload: e || {},
     });
 }
+
+// todo - note this matches the expected id for the extension (and the old version)
+const i = chrome.identity.getRedirectURL();
+console.log('identity url', i);

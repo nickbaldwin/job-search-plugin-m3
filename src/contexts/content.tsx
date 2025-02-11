@@ -5,7 +5,10 @@ import { log } from '../utils/logger.ts';
 
 // listen to messages from the world script and update the store
 import { ListenerFunction } from '../components/content/scripts/resultsListenerFunction.ts';
+// listen to messages from the background script and update the store
+import { settingsListenerFunction } from '../components/content/scripts/settingsListenerFunction.ts';
 ListenerFunction();
+settingsListenerFunction();
 
 const moduleName = 'content script';
 log({ logType: 'info', moduleName, message: 'loaded' });
@@ -25,7 +28,3 @@ ReactDOM.createRoot(root).render(
         <App />
     </React.StrictMode>
 );
-
-// listen to messages from the background script and update the store
-import { settingsListenerFunction } from '../components/content/scripts/settingsListenerFunction.ts';
-settingsListenerFunction();

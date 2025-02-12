@@ -1,11 +1,8 @@
-import { useIsAuthenticated, useMsal } from '@azure/msal-react';
 import { SignInButton } from './SignInButton';
-import { SignOutButton } from './SignOutButton';
-import { InteractionStatus } from '@azure/msal-browser';
+
 
 const SignInSignOutButton = () => {
-    const { inProgress } = useMsal();
-    const isAuthenticated = useIsAuthenticated();
+
 
     /*
     if (isAuthenticated) {
@@ -20,11 +17,6 @@ const SignInSignOutButton = () => {
      */
     return (
         <div>
-            {isAuthenticated ? (
-                <div>Authenticated</div>
-            ) : (
-                <div>Not Authenticated</div>
-            )}
             <SignInButton />
         </div>
     );

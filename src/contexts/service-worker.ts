@@ -1,3 +1,6 @@
+import '../oidc/bg-auth.js';
+import '../oidc/bg-initMocks.js';
+
 import { log } from '../utils/logger.ts';
 import {
     MessageType,
@@ -94,6 +97,18 @@ try {
         payload: e || {},
     });
 }
+
+// todo
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.executeFn === 'signIn') {
+        console.log('sign in');
+    } else if (request.executeFn === 'signOut') {
+        console.log('sign out');
+    } else if (request.executeFn === 'getSignedInUser') {
+        console.log('get user');
+    }
+    return true; // must return true for async listeneres
+});
 
 // todo - note this matches the expected id for the extension (and the old version)
 const i = chrome.identity.getRedirectURL();

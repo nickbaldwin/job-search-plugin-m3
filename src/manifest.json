@@ -214,10 +214,18 @@
     ],
     "web_accessible_resources": [
         {
-            "resources": ["icon16.png", "icon48.png", "icon128.png"],
+            "resources": [
+                "icon16.png",
+                "icon48.png",
+                "icon128.png"
+            ],
             "matches": [
                 "<all_urls>"
             ]
+        },
+        {
+            "resources": ["popup.html"],
+            "matches": []
         }
     ]
 }

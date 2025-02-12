@@ -1,5 +1,6 @@
-import '../oidc/bg-auth.js';
-import '../oidc/bg-initMocks.js';
+import '../oidc/jsdom-min.js';
+import '../oidc/bg-initMocks.ts';
+import '../oidc/bg-auth.ts';
 
 import { log } from '../utils/logger.ts';
 import {

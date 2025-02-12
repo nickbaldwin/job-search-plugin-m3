@@ -1,7 +1,5 @@
 // a workaround for oidc being dependent on global window object
 // import { JSDOM } from 'jsdom';
-import './jsdom-min.js';
-
 const jsdom = new globalThis.jsdomModule.JSDOM();
 jsdom.reconfigure({ url: chrome.identity.getRedirectURL() });
 

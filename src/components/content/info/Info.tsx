@@ -1,3 +1,5 @@
+import Popup from '../../popup/Popup.tsx';
+
 export const Info = () => {
     return (
         <>
@@ -20,6 +22,7 @@ export const Info = () => {
             <br />
             <p>It works on all Monster domains - see list in the sites tab.</p>
             <br />
+            <Popup />
         </>
     );
 };

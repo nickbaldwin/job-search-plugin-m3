@@ -1,3 +1,4 @@
+// todo - workaround for oidc not supporting chrome.storage API as a cache option
 import '../oidc/jsdom-min.js';
 import '../oidc/bg-initMocks.ts';
 import '../oidc/bg-auth.ts';
@@ -24,9 +25,7 @@ try {
 
         // todo
         if (message.type === 'SAVED_SETTINGS_REQUEST') {
-            console.log('check for settings');
             const settings = await getSettingsFromExtensionStorage();
-            console.log('settings', settings);
             sendMessageToContent({
                 type: 'SAVED_SETTINGS',
                 payload: settings,
@@ -40,7 +39,6 @@ try {
             chrome.cookies.getAll({ name: 'jaType' }, function (cookies) {
                 cookies.forEach((cookie) => {
                     if (cookie.name === 'jaType') {
-                        console.log(cookie);
                         sendMessageToContent({
                             type: 'COOKIE_SET',
                             payload: cookie,
@@ -51,17 +49,21 @@ try {
         }
 
         if (message.type === 'TOGGLE_SETTING_VISIBILITY') {
-            console.log('save setting');
-
             // todo - move logic to storage / settings
             const currentSettings = await getSettingsFromExtensionStorage();
-            console.log('current settings ', currentSettings);
             // todo
             if (
                 typeof message.payload !== 'string' ||
                 !getNamesOfFields().includes(message.payload)
             ) {
-                console.log(`setting ${message.payload} not in list of fields`);
+                log({
+                    logType: 'error',
+                    moduleName: 'service-worker',
+                    error: 'error saving settings',
+                    payload: {
+                        error: `setting ${message.payload} not in list of fields`,
+                    },
+                });
                 return;
             }
             const setting = currentSettings[message.payload];
@@ -84,7 +86,12 @@ try {
                     payload: updated,
                 });
             } else {
-                console.log('error saving settings');
+                log({
+                    logType: 'error',
+                    moduleName: 'service-worker',
+                    error: 'error saving settings',
+                    payload: { status: status },
+                });
             }
         }
     };
@@ -107,7 +114,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         console.log('sign out');
     } else if (request.executeFn === 'getSignedInUser') {
         console.log('get user');
+        globalThis.getSignedInUser().then((user) => {
+            console.log('USERRERERER', user);
+            sendResponse(user);
+        });
     }
+
     return true; // must return true for async listeneres
 });
 

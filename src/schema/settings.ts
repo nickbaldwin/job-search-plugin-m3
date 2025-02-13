@@ -753,6 +753,8 @@ export const getNamesOfFields: () => string[] = (): string[] => {
         .map((field: DataProperty) => field.field);
 };
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 const fields = getNamesOfFields() as const;
 export type Field = (typeof fields)[number]; // i.e. 'position' | 'adRank' ...
 export type UserSettings = Record<Field, DataProperty>;

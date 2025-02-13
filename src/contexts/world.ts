@@ -56,6 +56,8 @@ const sendSearchId = () => {
         moduleName,
         fn: 'sendSearchId',
         // todo - typing
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         payload: searchId,
     });
 
@@ -78,6 +80,8 @@ const sendEstimatedTotalSize = () => {
         moduleName,
         fn: 'sendEstimatedTotalSize',
         // todo - typing
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         payload: est,
     });
 
@@ -118,6 +122,8 @@ const sendRequest = () => {
         moduleName,
         fn: 'sendFingerprintId',
         // todo typing
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         payload: fingerprintId,
     });
 

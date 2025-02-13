@@ -1,5 +1,10 @@
-// a workaround for oidc being dependent on global window object
-// import { JSDOM } from 'jsdom';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
+// a workaround for oidc being dependent on global window object, and access to localStorage
+// thus, need to mock the window object and localStorage
+// todo - try removing jsdom and providing a simpler mock
+
 const jsdom = new globalThis.jsdomModule.JSDOM();
 jsdom.reconfigure({ url: chrome.identity.getRedirectURL() });
 

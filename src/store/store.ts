@@ -18,6 +18,8 @@ interface State {
     bears: number;
     increase: (by: number) => void;
 
+    isAuth: boolean;
+    username: string;
     results: DisplayJob[];
     resultsSize: number;
     resultsEstimatedTotalSize: number;
@@ -29,6 +31,9 @@ interface State {
     context: Record<string, string>;
     settings: Record<string, DataProperty>;
 
+    // todo
+    updateAuth: (to: boolean) => void;
+    updateUsername: (to: string) => void;
     updateResults: (add: ResultsData) => void;
     updateEstimatedTotalSize: (to: number) => void;
     updateCookieValue: (to: string) => void;
@@ -44,6 +49,8 @@ const useStore = create<State>()(
     zustymiddlewarets((set) => ({
         bears: 0,
 
+        isAuth: false,
+        username: '',
         results: [],
         resultsSize: 0,
         resultsEstimatedTotalSize: 0,
@@ -58,6 +65,16 @@ const useStore = create<State>()(
         increase: (by: number) =>
             set((state: { bears: number }) => ({ bears: state.bears + by })),
 
+        updateAuth: (payload: boolean) => {
+            set(() => ({
+                isAuth: payload,
+            }));
+        },
+        updateUsername: (payload: string) => {
+            set(() => ({
+                username: payload,
+            }));
+        },
         // todo - just pass results object
         updateResults: (payload: object) => {
             // @ts-expect-error ugh
@@ -90,14 +107,12 @@ const useStore = create<State>()(
         },
         updateRequest: (payload: object) => {
             const transformedRequest = transformRequest(payload);
-            console.log('transformed request', transformedRequest);
             set(() => ({
                 request: transformedRequest,
             }));
         },
         updateContext: (payload: object) => {
             const transformedContext = transformContext(payload);
-            console.log('transformed context', transformedContext);
             set(() => ({
                 context: transformedContext,
             }));

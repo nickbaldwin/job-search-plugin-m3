@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { DisplayJob } from '../../../schema/displayJob.ts';
 
 import './table.css';
 

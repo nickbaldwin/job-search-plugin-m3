@@ -1,13 +1,24 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
+// due to MSAL not working with v3 chrome extensions, using oidc-client-ts instead
+// see https://github.com/AzureAD/microsoft-authentication-library-for-js/issues/3923
+// this code from sample: https://github.com/Alino/OIDC-client-ts-chromium-sample
+// todo - refactor oidc code
+
 import * as oidc from 'oidc-client-ts';
 
-console.log(oidc);
+// microsoft app registration
+// https://learn.microsoft.com/en-us/entra/identity-platform/scenario-spa-app-registration
 
 const tenant = '4d9268cd-b286-4d81-9a28-f9ee90fd67c3';
 const clientId = '67cb8bd6-d64f-4a7e-b519-fc30fb46c12b';
 
 const url = 'https://flklggaomooblmlbbiiadbfmjembkkih.chromiumapp.org/';
 const redirectUri = chrome.identity.getRedirectURL();
-console.log(url, redirectUri);
+if (url !== redirectUri) {
+    console.error('redirect uri does not match');
+}
 
 const settings = {
     authority: `https://login.microsoftonline.com/${tenant}/`,
@@ -143,6 +154,7 @@ async function launchWebAuthFlow(url) {
                         .processSigninResponse(responseUrl)
                         .then((user) => {
                             console.log('processSigninResponse: ', user);
+                            // todo - check for user in localstorage and store user when launching the app
                             mgr.storeUser(new oidc.User(user));
                             resolve(user);
                         })

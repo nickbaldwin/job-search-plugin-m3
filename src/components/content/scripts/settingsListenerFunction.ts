@@ -25,6 +25,8 @@ export const settingsListenerFunction = () => {
 
             console.log('update settings here');
             // todo
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             updateSettings(messageType.payload);
             console.log(window.location.href);
         }
@@ -40,10 +42,12 @@ export const settingsListenerFunction = () => {
 
             if (
                 messageType.payload &&
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 window.location.host.match(messageType.payload?.domain)
             ) {
                 console.log('update cookie here');
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 updateCookieValue(messageType.payload.value);
             }
